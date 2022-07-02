@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import styled from "styled-components";
@@ -10,6 +10,7 @@ export default function Registros() {
     const { usuario, setUsuario, listaDeRegistros, setListaDeRegistros } = useContext(UserContext);
 
     const navigate = useNavigate();
+    const saldo = calculaSaldo(listaDeRegistros);
 
     useEffect(() => {
         const config = {
@@ -33,13 +34,13 @@ export default function Registros() {
         let somaSaidas = 0;
         listaDeRegistros.forEach((registro) => {
             if (registro.type === "entrada") {
-                somaEntradas += parseFloat(registro.value.replace(",","."));
+                somaEntradas += parseFloat(registro.value.replace(",", "."));
             } else if (registro.type === "saida") {
-                somaSaidas += parseFloat(registro.value.replace(",","."));
+                somaSaidas += parseFloat(registro.value.replace(",", "."));
             }
         });
 
-        return (somaEntradas - somaSaidas).toFixed(2).replace(".",",");
+        return (somaEntradas - somaSaidas).toFixed(2).replace(".", ",");
     }
 
     function sair() {
@@ -55,8 +56,31 @@ export default function Registros() {
         );
     }
 
+    function renderizarLocalRegistros() {
+        if (listaDeRegistros.length === 0) {
+            return (
+                <p>
+                    Não há registros de
+                    entrada ou saída
+                </p>
+            );
+        } else {
+            return (
+                <>
+                    <Registrados>
+                        {registros}
+                    </Registrados>
+                    <Saldo saldo={saldo}>
+                        <h5>Saldo</h5>
+                        <h6>{saldo}</h6>
+                    </Saldo>
+                </>
+            );
+        }
+    }
+
     const registros = renderizarRegistros();
-    const saldo = calculaSaldo(listaDeRegistros);
+    const localRegistros = renderizarLocalRegistros();
 
     return (
         <Container>
@@ -65,13 +89,7 @@ export default function Registros() {
                 <ion-icon onClick={sair} name="log-out-outline"></ion-icon>
             </Topo>
             <LocalRegistros>
-                <Registrados>
-                    {registros}
-                </Registrados>
-                <Saldo saldo={saldo}>
-                    <h5>Saldo</h5>
-                    <h6>{saldo}</h6>
-                </Saldo>
+                {localRegistros}
             </LocalRegistros>
             <Botoes>
                 <Botao onClick={() => navigate("/entrada")}>
@@ -165,6 +183,17 @@ const LocalRegistros = styled.div`
     padding: 24px 12px 10px 12px;
     margin-top: 78px;
     position: relative;
+
+    p {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 23px;
+        align-self: center;
+        text-align: center;
+        margin-top: 50%;
+        width: 200px;
+        color: #868686;
+    }
 `
 
 const Registrados = styled.div`

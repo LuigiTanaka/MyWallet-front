@@ -39,7 +39,7 @@ const DiaTitulo = styled.div`
     }   
 `
 
-const Valor = styled.h4`
+const Valor = styled.div`
     width: 80px;
     display: flex;
     justify-content: end;

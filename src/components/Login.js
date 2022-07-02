@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
 import axios from "axios";
 import styled from "styled-components";
-
 import UserContext from "../contexts/UserContext";
 
 export default function Login() {
@@ -26,7 +25,7 @@ export default function Login() {
             password: senha
         }
 
-        const promise = axios.post("http://localhost:5000/login", body);
+        const promise = axios.post("http://localhost:5000/sign-in", body);
 
         promise
             .then(res => {
@@ -38,10 +37,6 @@ export default function Login() {
                 setCarregando(false);
             })
 
-    }
-
-    function irCadastro() {
-        navigate("/cadastro");
     }
 
     function limparCampos() {
@@ -77,7 +72,7 @@ export default function Login() {
             <form onSubmit={fazerLogin}>
                 {formularioLogin}
             </form>
-            <h6 onClick={irCadastro}>Primeira vez? Cadastre-se!</h6>
+            <h6 onClick={() => navigate("/cadastro")}>Primeira vez? Cadastre-se!</h6>
         </Container>
     )
 }

@@ -17,20 +17,7 @@ export default function App() {
             password: "luigi123"
         }
     );
-    const [listaDeRegistros, setListaDeRegistros] = useState([
-        {
-            title: "salario",
-            value: "500,43",
-            type: "entrada",
-            day: "12/03"
-        },
-        {
-            title: "mercado",
-            value: "345,21",
-            type: "saida",
-            day: "13/03"
-        }
-    ]);
+    const [listaDeRegistros, setListaDeRegistros] = useState([]);
 
     const contextValue = { usuario, setUsuario, listaDeRegistros, setListaDeRegistros };
 
