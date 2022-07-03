@@ -10,13 +10,7 @@ import Registros from "./Registros";
 
 export default function App() {
 
-    const [usuario, setUsuario] = useState(
-        {
-            name: "luigi",
-            email: "luigi@gmail.com",
-            password: "luigi123"
-        }
-    );
+    const [usuario, setUsuario] = useState({});
     const [listaDeRegistros, setListaDeRegistros] = useState([]);
 
     const contextValue = { usuario, setUsuario, listaDeRegistros, setListaDeRegistros };

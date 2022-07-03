@@ -32,15 +32,17 @@ export default function Registros() {
     function calculaSaldo(listaDeRegistros) {
         let somaEntradas = 0;
         let somaSaidas = 0;
-        listaDeRegistros.forEach((registro) => {
-            if (registro.type === "entrada") {
-                somaEntradas += parseFloat(registro.value.replace(",", "."));
-            } else if (registro.type === "saida") {
-                somaSaidas += parseFloat(registro.value.replace(",", "."));
-            }
-        });
-
-        return (somaEntradas - somaSaidas).toFixed(2).replace(".", ",");
+        if(listaDeRegistros.length !== 0) {
+            listaDeRegistros.forEach((registro) => {
+                if (registro.type === "entrada") {
+                    somaEntradas += parseFloat(registro.value.replace(",", "."));
+                } else if (registro.type === "saida") {
+                    somaSaidas += parseFloat(registro.value.replace(",", "."));
+                }
+            });
+    
+            return (somaEntradas - somaSaidas).toFixed(2).replace(".", ",");
+        }
     }
 
     function sair() {

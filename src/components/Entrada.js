@@ -6,7 +6,7 @@ import styled from "styled-components";
 import UserContext from "../contexts/UserContext";
 
 export default function Entrada() {
-    const { setListaDeResgistros } = useContext(UserContext);
+    const { usuario } = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -26,11 +26,16 @@ export default function Entrada() {
             type: "entrada"
         }
 
-        const promise = axios.post("http://localhost:5000/registros", body);
+        const config = {
+            headers: {
+                Authorization: `Bearer ${usuario.token}`
+            }
+        }
+
+        const promise = axios.post("http://localhost:5000/registros", body, config);
 
         promise
             .then(res => {
-                setListaDeResgistros(res.data);
                 navigate("/registros");
             }).catch((err) => {
                 alert("Dados inválidos, preencha os campos novamente");
