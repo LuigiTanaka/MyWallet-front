@@ -38,7 +38,7 @@ export default function Entrada() {
             .then(res => {
                 navigate("/registros");
             }).catch((err) => {
-                alert("Dados inválidos, preencha os campos novamente");
+                alert(err.response.data);
                 limparCampos();
                 setCarregando(false);
             })

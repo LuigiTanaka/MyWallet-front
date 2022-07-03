@@ -33,7 +33,7 @@ export default function Cadastro() {
                 .then(res => {
                     navigate("/");
                 }).catch((err) => {
-                    alert("Dados inválidos, preencha os campos novamente");
+                    alert(err.response.data);
                     limparCampos();
                     setCarregando(false);
                 })

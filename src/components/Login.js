@@ -32,7 +32,7 @@ export default function Login() {
                 setUsuario(res.data);
                 navigate("/registros");
             }).catch((err) => {
-                alert("Dados inválidos, preencha os campos novamente");
+                alert(err.response.data);
                 limparCampos();
                 setCarregando(false);
             })
