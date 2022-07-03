@@ -27,7 +27,7 @@ export default function Cadastro() {
         }
 
         if(senha === confirmaSenha) {
-            const promise = axios.post("http://localhost:5000/sign-up", body);
+            const promise = axios.post("https://back-mywallet-luigi.herokuapp.com/sign-up", body);
 
             promise
                 .then(res => {

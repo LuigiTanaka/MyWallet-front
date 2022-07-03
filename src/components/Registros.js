@@ -19,7 +19,7 @@ export default function Registros() {
             }
         }
 
-        const promise = axios.get("http://localhost:5000/registros", config);
+        const promise = axios.get("https://back-mywallet-luigi.herokuapp.com/registros", config);
 
         promise.then(res => {
             if (res.data.length !== 0) {

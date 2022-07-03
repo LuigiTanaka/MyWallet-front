@@ -32,7 +32,7 @@ export default function Entrada() {
             }
         }
 
-        const promise = axios.post("http://localhost:5000/registros", body, config);
+        const promise = axios.post("https://back-mywallet-luigi.herokuapp.com/registros", body, config);
 
         promise
             .then(res => {
